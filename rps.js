@@ -33,20 +33,9 @@ function playRound(humanChoice, computerChoice) {
     rounds++;
 }
 
-function playGame() {
-    while (rounds < 5) {
-        const humanChoice = getHumanChoice();
-        const computerChoice = getComputerChoice();
-        playRound(humanChoice, computerChoice);
-    }
-
-    if (humanScore === computerScore) {
-        console.log("It's a tie, nobody wins!");
-        return;
-    }
-
-    const winner = humanScore >= computerScore ? "Player" : "Computer";
-    console.log("Game over, " + winner + " wins!");
-}
-
-playGame();
+const choices = document.querySelectorAll(".choice");
+choices.forEach((button) =>{ 
+    button.addEventListener("click", (e) => {
+        playRound(button.id, getComputerChoice());
+    });
+});
