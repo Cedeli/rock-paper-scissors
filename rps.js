@@ -15,23 +15,29 @@ function getHumanChoice() {
     return answer.toLowerCase();
 }
 
-const spanHuman = document.querySelector("span.score#human");
-const spanComputer = document.querySelector("span.score#computer");
+const scoreDisplayHuman = document.querySelector(".score#human");
+const scoreDisplayComputer = document.querySelector(".score#computer");
+const scoreLabelHuman = document.querySelector(".score-label#human");
+const scoreLabelComputer = document.querySelector(".score-label#computer");
 function playRound(humanChoice, computerChoice) {
+    scoreLabelHuman.setAttribute("style", "color:black");
+    scoreLabelComputer.setAttribute("style", "color:black");
+
     if (humanChoice === computerChoice) {
-        console.log("It's a tie!");
+        scoreLabelHuman.setAttribute("style", "color:orange");
+        scoreLabelComputer.setAttribute("style", "color:orange");
     } else if (
         (humanChoice === "rock" && computerChoice === "scissors") ||
         (humanChoice === "scissors" && computerChoice === "paper") ||
         (humanChoice === "paper" && computerChoice === "rock")
     ) {
         humanScore++;
-        spanHuman.innerText = humanScore;
-        console.log("You win!");
+        scoreDisplayHuman.innerText = humanScore;
+        scoreLabelHuman.setAttribute("style", "color:green");
     } else {
         computerScore++;
-        spanComputer.innerText = computerScore;
-        console.log("Computer wins!");
+        scoreDisplayComputer.innerText = computerScore;
+        scoreLabelComputer.setAttribute("style", "color:green");
     }
 }
 
