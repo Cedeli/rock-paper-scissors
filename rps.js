@@ -1,4 +1,3 @@
-let rounds = 0;
 let humanScore = 0;
 let computerScore = 0;
 
@@ -27,14 +26,13 @@ function playRound(humanChoice, computerChoice) {
         (humanChoice === "paper" && computerChoice === "rock")
     ) {
         humanScore++;
-        spanHuman.innerText = "Human Score: " + humanScore;
+        spanHuman.innerText = humanScore;
         console.log("You win!");
     } else {
         computerScore++;
-        spanComputer.innerText = "Computer Score: " + computerScore;
+        spanComputer.innerText = computerScore;
         console.log("Computer wins!");
     }
-    rounds++;
 }
 
 const choices = document.querySelectorAll(".choice");
