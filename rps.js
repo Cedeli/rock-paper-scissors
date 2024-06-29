@@ -1,6 +1,7 @@
 let humanScore = 0;
 let computerScore = 0;
 let finished = false;
+const rounds = 5;
 
 const scoreDisplayHuman = document.querySelector(".score#human");
 const scoreDisplayComputer = document.querySelector(".score#computer");
@@ -13,14 +14,8 @@ function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
     const randomIndex = Math.floor(Math.random() * choices.length);
     const computerChoice = choices[randomIndex];
-    console.log("Computer chose: " + computerChoice);
-    return computerChoice;
-}
 
-function getHumanChoice() {
-    const answer = prompt("Pick your choice: ");
-    console.log("You chose: " + answer);
-    return answer.toLowerCase();
+    return computerChoice;
 }
 
 function playRound(humanChoice, computerChoice) {
@@ -31,10 +26,10 @@ function playRound(humanChoice, computerChoice) {
 
     updateScore(humanChoice, computerChoice);
 
-    if (humanScore === 5) {
+    if (humanScore >= rounds) {
         victoryLabel.innerText = "Player Wins!";
         finished = true;
-    } else if (computerScore === 5) {
+    } else if (computerScore >= rounds) {
         victoryLabel.innerText = "Computer Wins!";
         finished = true;
     }
@@ -74,7 +69,7 @@ function resetGame() {
 }
 
 choices.forEach((button) =>{ 
-    button.addEventListener("click", (e) => {
+    button.addEventListener("click", () => {
         playRound(button.id, getComputerChoice());
     });
 });
