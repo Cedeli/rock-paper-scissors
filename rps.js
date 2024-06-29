@@ -1,5 +1,13 @@
 let humanScore = 0;
 let computerScore = 0;
+let finished = false;
+
+const scoreDisplayHuman = document.querySelector(".score#human");
+const scoreDisplayComputer = document.querySelector(".score#computer");
+const scoreLabelHuman = document.querySelector(".score-label#human");
+const scoreLabelComputer = document.querySelector(".score-label#computer");
+const choices = document.querySelectorAll(".choice");
+const victoryLabel = document.querySelector(".victory-label")
 
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
@@ -15,14 +23,24 @@ function getHumanChoice() {
     return answer.toLowerCase();
 }
 
-const scoreDisplayHuman = document.querySelector(".score#human");
-const scoreDisplayComputer = document.querySelector(".score#computer");
-const scoreLabelHuman = document.querySelector(".score-label#human");
-const scoreLabelComputer = document.querySelector(".score-label#computer");
 function playRound(humanChoice, computerChoice) {
+    if (finished) resetGame();
+
     scoreLabelHuman.setAttribute("style", "color:black");
     scoreLabelComputer.setAttribute("style", "color:black");
 
+    updateScore(humanChoice, computerChoice);
+
+    if (humanScore === 5) {
+        victoryLabel.innerText = "Player Wins!";
+        finished = true;
+    } else if (computerScore === 5) {
+        victoryLabel.innerText = "Computer Wins!";
+        finished = true;
+    }
+}
+
+function updateScore(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
         scoreLabelHuman.setAttribute("style", "color:orange");
         scoreLabelComputer.setAttribute("style", "color:orange");
@@ -32,16 +50,29 @@ function playRound(humanChoice, computerChoice) {
         (humanChoice === "paper" && computerChoice === "rock")
     ) {
         humanScore++;
-        scoreDisplayHuman.innerText = humanScore;
-        scoreLabelHuman.setAttribute("style", "color:green");
+        scoreLabelHuman.setAttribute("style", "color: green");
     } else {
         computerScore++;
-        scoreDisplayComputer.innerText = computerScore;
-        scoreLabelComputer.setAttribute("style", "color:green");
+        scoreLabelComputer.setAttribute("style", "color: green");
     }
+
+    showScore();
 }
 
-const choices = document.querySelectorAll(".choice");
+function showScore() {
+    scoreDisplayHuman.innerText = humanScore;
+    scoreDisplayComputer.innerText = computerScore;
+}
+
+function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
+    victoryLabel.innerText = "";
+    scoreDisplayHuman.innerText = humanScore;
+    scoreDisplayComputer.innerText = computerScore;
+    finished = false;
+}
+
 choices.forEach((button) =>{ 
     button.addEventListener("click", (e) => {
         playRound(button.id, getComputerChoice());
