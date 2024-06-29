@@ -16,6 +16,8 @@ function getHumanChoice() {
     return answer.toLowerCase();
 }
 
+const spanHuman = document.querySelector("span.score#human");
+const spanComputer = document.querySelector("span.score#computer");
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
         console.log("It's a tie!");
@@ -25,9 +27,11 @@ function playRound(humanChoice, computerChoice) {
         (humanChoice === "paper" && computerChoice === "rock")
     ) {
         humanScore++;
+        spanHuman.innerText = "Human Score: " + humanScore;
         console.log("You win!");
     } else {
         computerScore++;
+        spanComputer.innerText = "Computer Score: " + computerScore;
         console.log("Computer wins!");
     }
     rounds++;

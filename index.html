@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>RPS</title>
+    <link rel="stylesheet" href="style.css">
     <script src="rps.js" defer></script>
 </head>
 <body>
-    <button class="choice" id="rock">Rock</button>
-    <button class="choice" id="paper">Paper</button>
-    <button class="choice" id="scissors">Scissors</button>
-</body>
+    <div class="game-container">
+        <div class="score-container">
+            <span class="score" id="human">Human Score: 0</span>
+            <span class="score" id="computer">Computer Score: 0</span>
+        </div>
+        <div class="choice-container">
+            <button class="choice" id="rock">Rock</button>
+            <button class="choice" id="paper">Paper</button>
+            <button class="choice" id="scissors">Scissors</button>
+        </div>
+    </div>
 </html>
